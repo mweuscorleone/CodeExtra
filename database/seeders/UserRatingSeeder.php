@@ -4,15 +4,15 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\User;
+use App\Models\UserRating;
 
-class UserSeeder extends Seeder
+class UserRatingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        User::factory(20)->create();
+        UserRating::factory(200)->create();
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -140,6 +141,24 @@ class AuthController extends Controller
 
         return response()->json($user);
     }
+
+    public function passwordReset(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:4|max:20'
+        ]);
+        $user =User::where('email',$request->email)->first();
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'password changed successfully'
+        ], 200);
+    }
+
+
 
 
 

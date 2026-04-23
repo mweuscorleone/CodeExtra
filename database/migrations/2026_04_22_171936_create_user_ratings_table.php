@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('user_ratings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->constrained();
             $table->unsignedTinyInteger('rating');
             $table->datetime('rate_datetime')->useCurrent();
             $table->timestamps();
 
-            $table->unique('user_id','product_id');
+        
         });
     }
 
